@@ -2,6 +2,7 @@ use paho_mqtt as mqtt;
 use futures::Future;
 use std::sync::mpsc::{channel, Sender};
 use std::thread;
+use std::time::Duration;
 
 pub struct MqttClient {
     sender: Sender<mqtt::Message>
@@ -27,6 +28,7 @@ impl MqttClient {
         thread::spawn(move || {
             loop {
                 let msg = rx.recv().unwrap();
+                thread::sleep(Duration::from_secs(1));
                 let tok = cli.publish(msg.clone());
                 match tok.wait() {
                     Ok(_) => println!("Message {} sent to mqtt with success", msg),
