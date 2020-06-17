@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 paho-mqtt = { git = "https://github.com/eclipse/paho.mqtt.rust.git", rev = "f92e43a9e252cf0fe552c5420eb41005e454140a", features = ["build_bindgen","ssl"] }
 futures = "0.1"
+sled = "0.32.0-rc1"
